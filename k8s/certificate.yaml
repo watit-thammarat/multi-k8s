@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: tongnakub-com-tls
+spec:
+  secretName: tongnakub-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: tongnakub.com
+  dnsNames:
+    - tongnakub.com
+    - www.tongnakub.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - tongnakub.com
+          - www.tongnakub.com
